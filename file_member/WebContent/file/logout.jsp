@@ -12,7 +12,7 @@
 		session.invalidate();
 	%>
 		<script>
-			alert("로그아");
+			alert("logout");
 			location.href="main.jsp";
 		</script>
 </body>

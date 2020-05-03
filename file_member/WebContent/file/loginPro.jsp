@@ -11,7 +11,7 @@
 	<%
 		request.setCharacterEncoding("utf-8");
 	%>
-	<h2>로그인 처리페이지</h2>
+	<h2>login</h2>
 	<%
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
@@ -23,13 +23,13 @@
 			session.setMaxInactiveInterval(1*60);
 	%>	
 			<script>
-				alert("로그인이 되었습니다.");
-				location.herf ="main.jsp"; 
+				alert("Login complete. Welcome!");
+				location.href ="main.jsp"; 
 			</script>
 	<%}else{ %>
 		<script>
-			alert("아이디와 패스워드를 확인해주세요.");
-			location.herf ="login.jsp";
+			alert("Please check your ID and pw.");
+			location.href ="login.jsp";
 		</script>
 	<%} %>
 	

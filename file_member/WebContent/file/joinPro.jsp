@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="file_member.UserDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="file_member.User"%>
@@ -11,7 +12,7 @@
 </head>
 <body>
 	<%
-		request.setCharacterEncoding("uth-8");
+		request.setCharacterEncoding("utf-8");
 	%>
 	<%
 		User user = new User();
@@ -23,18 +24,19 @@
 		user.reg_date = sdf.format(d);
 		boolean idCheck = UserDao.instance.checkUserId(user);
 		
-		if(idCheck==true){%>
+		if(idCheck){
+		%>
 			<script>
-				alert("중복아이디 입니다.");
-				location.href = "join.jsp";
+			 alert("This ID is already in use.");
+			 location.href="join.jsp";
 			</script>
-		<%
-		}else{
-			userDao.instance.insertUser(user);
-	%>
-		<script>
-			alert("회원가입을 축하합니다.");
-			location.href ="main.jsp";
-		</script>
+		<%}else{
+			UserDao.instance.insertUser(user);
+			 %>
+			<script>
+			 alert("You have signed up as a member.");
+			 location.href="main.jsp";
+			</script>	
+		<%}%>
 </body>
 </html>

@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 public class UserDao {
 	static public UserDao instance = new UserDao();
-	ArrayList<User> userList = new ArrayList<>();
+	ArrayList<User>userList = new ArrayList<>();
 	public String realpath = "";
-	String filename ="/userData.txt";
+	String filename = "/userdata.txt";
 	
 	public void insertUser(User user) {
 		userList.add(user);
@@ -22,28 +22,33 @@ public class UserDao {
 		System.out.println(user.pw);
 		System.out.println(user.name);
 		System.out.println(user.reg_date);
-		for(User temp : userList) {
-			temp=user;
+		for(User temp : userList ) {
+			temp =  user;
 			saveData();
 			break;
 		}
 	}
-
-	public void deleteUser(String id) {
-		int i=0; 
-		for(User temp : userList) {
+	public void deleteUserId(String id) {
+		int i=0;
+		for(User temp :userList) {
 			if(temp.id.equals(id)) {
 				userList.remove(i);
 				saveData();
-				break;
 			}
 			i+=1;
-		}		
+		}
 	}
-	
-	public boolean checkUserId(String id) {
+	public User getUserId(String id) {
 		for(User temp : userList) {
 			if(temp.id.equals(id)) {
+				return temp;
+			}
+		}
+		return null;
+	}
+	public boolean checkUserId(User user) {
+		for(User temp : userList) {
+			if(temp.id.equals(user.id)) {
 				return true;
 			}
 		}
@@ -56,24 +61,18 @@ public class UserDao {
 			}
 		}
 		return false;
-	}
-	public User getUserId(String id) {
-		for(User temp : userList) {
-			if(temp.id.equals(id)) {
-				return temp;
-			}
-		}
-		return null;
+		
 	}
 	public void loadData() {
 		File file = new File(realpath+filename);
 		if(file.exists()) {
+			userList.clear();
 			try {
 				FileReader fr = new FileReader(file);
 				BufferedReader br = new BufferedReader(fr);
 				String line = br.readLine();
 				while(line!=null) {
-					String arr[] = line.split("/");
+					String arr[]= line.split("/");
 					User user = new User();
 					user.id = arr[0];
 					user.pw = arr[1];
@@ -91,7 +90,7 @@ public class UserDao {
 	}
 	public void saveData() {
 		String data = "";
-		for(User temp :userList) {
+		for(User temp : userList) {
 			data += temp.id;
 			data += "/";
 			data += temp.pw;
@@ -99,9 +98,10 @@ public class UserDao {
 			data += temp.name;
 			data += "/";
 			data += temp.reg_date;
-			data += "\r\n";			
+			data += "\r\n";
 		}
 		try {
+			System.out.println("UserDao.java = " + realpath);
 			FileWriter fw = new FileWriter(realpath+filename);
 			fw.write(data);
 			fw.close();
@@ -109,6 +109,5 @@ public class UserDao {
 			e.printStackTrace();
 		}
 	}
-	
 }
 	

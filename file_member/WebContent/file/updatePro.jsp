@@ -29,15 +29,15 @@
 			UserDao.instance.updateUser(user);
 	%>
 			<script>
-				alert("내용이 수정되었습니다.");
+				alert("Update complete!");
 				location.href="main.jsp";
 			</script>
 	<%
 		}else{
 		%>
 		<script>
-			alert("아이디와 비밀번호를 확인해주세요.");
-			location.href ="main.jsp";
+			alert("Please check your ID and pw.");
+			location.href ="update.jsp";
 		</script>
 		<%} %>
 </body>

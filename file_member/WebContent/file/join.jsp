@@ -8,9 +8,9 @@
 </head>
 <body>
 	<form method ="post" action = "joinPro.jsp">
-	아이디 <input type="text" name ="id"><br><br>
-	비밀번호 <input type="text" name ="pw"><br><br>
-	이름 <input type="text" name ="name"><br><br>
+	ID <input type="text" name ="id"><br><br>
+	PW  <input type="text" name ="pw"><br><br>
+	name <input type="text" name ="name"><br><br>
 	<input type="submit" value="입력완료">
 	
 </body>

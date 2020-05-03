@@ -13,23 +13,24 @@
 	%>
 	<%
 		String id = request.getParameter("id");
-		String passwd = request.getParameter("passwd");
-		boolean check = UserDao.instance.checkUserIdPw(id, passwd);
+		String pw = request.getParameter("passwd");
+		boolean check = UserDao.instance.checkUserIdPw(id, pw);
 		System.out.println(check);
 		
 		if(check==true){
-			UserDao.instance.deleteUser(id);
+			UserDao.instance.deleteUserId(id);
 			session.removeAttribute("log");
 	%>
 		<script>
-			alert("탈퇴가 완료되었습니다.");
+			alert("delete complete!");
 			location.herf = "main.jsp";
 		</script>
 		<% 
 		}else{
 		%>	
 			<script>
-				alert("아이디와 비밀번호를 확인하세요.");
+			alert("Please check your ID and pw.");
+			location.href ="delete.jsp";
 			</script>
 		<%} %>
 </body>	

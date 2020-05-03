@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>로그인 페이지</h2>
+	<h2>login page</h2>
 	<form method = "post" action="loginPro.jsp">
-	 아이디 <input type="text" name ="id">
-	 비밀번호 <input type = "text" name ="pw">
+	 ID <input type="text" name ="id">
+	 PW <input type = "text" name ="pw">
 	 <input type="submit" value ="로그인">
 	</form>
 </body>

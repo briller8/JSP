@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>member 테이블의 레코드 삭제</h2>
+	<h2>delete</h2>
 	<form method ="post" action ="deletePro.jsp" >
-	아이디<input type="text" name ="id" maxlength="50"><br><br>
-	비밀번호<input type="password" name ="passwd" maxlength="16"><br><br>
+	ID <input type="text" name ="id" maxlength="50"><br><br>
+	PW <input type="password" name ="passwd" maxlength="16"><br><br>
 	<input type="submit" value="입력완료">
 	</form>
 </body>
