@@ -21,7 +21,7 @@
 	PW<input type="password" name ="passwd" maxlength="16"><br><br>
 	RENAME <input type="text" name ="name" maxlength ="50"><br><br>
 	<input type = "hidden" value=<%=user.id %> name ="id">
-	<input type ="submit" value="입력완료">	
+	<input type ="submit" value="update">	
 	</form>
 </body>
 </html>

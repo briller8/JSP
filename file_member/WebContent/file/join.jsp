@@ -11,7 +11,7 @@
 	ID <input type="text" name ="id"><br><br>
 	PW  <input type="text" name ="pw"><br><br>
 	name <input type="text" name ="name"><br><br>
-	<input type="submit" value="입력완료">
+	<input type="submit" value="join">
 	
 </body>
 </html>

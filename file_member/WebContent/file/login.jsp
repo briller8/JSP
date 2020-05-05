@@ -11,7 +11,7 @@
 	<form method = "post" action="loginPro.jsp">
 	 ID <input type="text" name ="id">
 	 PW <input type = "text" name ="pw">
-	 <input type="submit" value ="로그인">
+	 <input type="submit" value ="login">
 	</form>
 </body>
 </html>

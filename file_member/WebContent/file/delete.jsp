@@ -11,7 +11,7 @@
 	<form method ="post" action ="deletePro.jsp" >
 	ID <input type="text" name ="id" maxlength="50"><br><br>
 	PW <input type="password" name ="passwd" maxlength="16"><br><br>
-	<input type="submit" value="입력완료">
+	<input type="submit" value="delete">
 	</form>
 </body>
 </html>
