@@ -94,6 +94,7 @@ public class BoardDAO {
 		for(int i=0;i<boardList.size();i++) {
 			System.out.println("----------------------------------------------------");
 			System.out.println(boardList.get(i).toString());
+		}
 	}
 	public void insertBoard(Board board) {
 		int maxNum=0;
@@ -126,9 +127,10 @@ public class BoardDAO {
 	}
 	public void insertDummy() {
 		Board board = new Board();
-		String[] a  
-		String[] b
-		String[] c
+		
+		String[] a = { "이", "최", "박", "김" , "조" , "신" , "유" , "윤"};
+		String[] b = { "민", "여", "명", "조" , "승" , "난" , "재" , "홍"};
+		String[] c = { "수", "정", "수", "한" , "모" , "다" , "석" , "만"};
 		
 		String temp ="";
 		
@@ -194,6 +196,7 @@ public class BoardDAO {
 			}
 		}
 		
+		//reLevel의 정렬
 		for(int i=0;i<boardList.size();i++) {
 			Board temp = boardList.get(i);
 			for(int j=i;j<boardList.size();j++) {
@@ -209,7 +212,7 @@ public class BoardDAO {
 				}
 			}
 		}
-		System.out.println("번호\t제목\t\t\t조회수\tref\treStep\treLevel");
+		System.out.println("번호\t제목\t조회수\tref\treStep\treLevel");
 		for(int i=0;i<boardList.size();i++) {
 			System.out.println("----------------------------------------");
 			System.out.println(boardList.get(i).toString());
@@ -232,24 +235,81 @@ public class BoardDAO {
 		}
 		return temp;
 	}
-	public Board getOneBoard() {
+	public Board getOneBoard(int num) {
+		int idx = checkNum(num);
+		Board board = boardList.get(idx);
 		
-	}
-	public Board getOneUpdateBoard() {
+		int readcount = board.getReadcount();
+		board.setReadcount(readcount+1);
 		
-	}
-	public boolean checkPassword(int password) {
+		saveData();
 		
-		return 		
+		return board;
 	}
-	public void updateBoard() {
-	
-	}
-	public void deleteBaord() {
+	public Board getOneUpdateBoard(int num) {
+		int idx = checkNum(num);
+		Board board = boardList.get(idx);
 		
+		return board;		
 	}
-	public void reWriteBorad() {
+	public boolean checkPassword(int num, String password) {
+		int idx = checkNum(num);
 		
+		boolean check = false;
+		String dbPassword = boardList.get(idx).getPassword();
+		if(password.equals(dbPassword)) {
+			check=!check;
+		}
+		
+		return check;
+	}
+	public void updateBoard(int num, String subject, String content) {
+		int idx = checkNum(num);
+		
+		Board board = boardList.get(idx);
+		board.setSubject(subject);
+		board.setContent(content);
+		
+		saveData();
+	}
+	public void deleteBaord(int num) {
+		int idx = checkNum(num);
+		boardList.remove(idx);
+		
+		saveData();
+	}
+	public void reWriteBorad(Board board) {
+		int maxNum=0;
+		for(int i=0;i<boardList.size();i++) {
+			if(maxNum<boardList.get(i).getNum()) {
+				maxNum=boardList.get(i).getNum();
+			}
+		}
+		
+		int ref = board.getRef();
+		int reStep = board.getReStep();
+		int reLevel = board.getReLevel();
+		
+		for(int i=0;i<boardList.size();i++) {
+			Board temp = boardList.get(i);
+			if(ref==temp.getRef()) {
+				if(reLevel<temp.getReLevel()) {
+					temp.setReLevel(temp.getReLevel()+1);
+				}
+			}
+		}
+		
+		board.setNum(maxNum+1);
+		board.setRef(ref);
+		board.setReStep(reStep+1);
+		board.setReLevel(reLevel+1);
+		
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String regDate = sdf.format(date);
+		boardList.add(board);
+		
+		saveData();
 	}
 }
 
