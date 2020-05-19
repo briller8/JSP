@@ -73,7 +73,7 @@
 							Board board = boardList.get(i);
 					%>
 					<tr height="40">
-						<td width="50" align="center"><%=number--%>></td>
+						<td width="50" align="center"><%=number--%></td>
 						<td width="100">
 						<%
 						if(board.getReStep()>1){
@@ -84,11 +84,12 @@
 							}
 						}
 						%>
+						<%--쿼리스트링 --%>
 						<a href="info.jsp?num=<%=board.getNum()%>"><%=board.getSubject()%></a>
 						</td>
-						<td width="320" align="center"><%=board.getRef() %></td>
-						<td width="150" align="center"><%=board.getReStep()%></td>
-						<td width="50" align="center"><%=board.getReLevel()%></td>
+						<td width="320" align="center"><%=board.getWriter()%></td>
+						<td width="150" align="center"><%=board.getRegDate()%></td>
+						<td width="50" align="center"><%=board.getReadcount()%></td>
 					</tr>
 					<%
 					}
@@ -115,7 +116,7 @@
 								<a href="list.jsp?pageNum=<%=startPageNum-size %>">[이전]</a>
 					<%			
 							}
-							for(int i=startPageNum;i<endPageNum;i++){
+							for(int i=startPageNum;i<=endPageNum;i++){
 					%>
 								<a href="list.jsp?pageNum=<%=i%>">[<%=i %>]</a>
 					<%
